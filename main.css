@@ -53,11 +53,11 @@ NAVBAR
 .navbar .nav {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 100%;
-  width: 100%;
+  flex: 1;
   flex-wrap: nowrap;
 }
 .navbar .nav ul {
@@ -71,13 +71,13 @@ NAVBAR
 .navbar .nav ul .nav-item {
   color: hsl(220, 14%, 75%);
   height: 100%;
-  width: 100px;
+  flex: 0.1;
   border: 3px solid transparent;
-  transition: border ease 1s;
+  transition: border ease 0.5s;
 }
 .navbar .nav ul .nav-item:hover {
   border-bottom: hsl(26, 100%, 55%) 3px solid;
-  transition: border ease 1s;
+  transition: border ease 0.5s;
 }
 .navbar .nav ul .nav-item .nav-link {
   display: flex;
@@ -105,19 +105,196 @@ NAVBAR
   align-items: center;
   width: 100%;
   height: 100%;
-  width: 10%;
+  flex: 1;
+  position: relative;
+}
+.navbar .nav .profile svg {
+  scale: 0.75;
 }
 .navbar .nav .profile .icons {
   margin-right: 15px;
 }
 .navbar .nav .profile a img {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border: transparent 2px solid;
+  transition: border ease 0.5s;
   border-radius: 50%;
 }
 .navbar .nav .profile a img:hover {
   border: hsl(26, 100%, 55%) 2px solid;
+  transition: border ease 0.5s;
+}
+
+.icon {
+  font-size: 2rem;
+  text-align: center;
+  vertical-align: middle;
+  transition: scale 0.25s linear, color linear 0.25s;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  border-radius: 50%;
+}
+.icon:hover {
+  color: hsl(26, 100%, 55%);
+  transition: scale 0.25s linear, color linear 0.25s;
+}
+
+.before,
+.after {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: white;
+  width: 50px;
+  height: 50px;
+  z-index: 2;
+}
+.before svg,
+.after svg {
+  font-size: 1rem;
+}
+.before:hover *,
+.after:hover * {
+  scale: 1.2;
+  font-weight: bold;
+}
+
+.before {
+  left: -25px;
+}
+
+.after {
+  right: -25px;
+}
+
+.close {
+  color: white;
+}
+
+.bucket {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bucket svg {
+  padding-right: 5px;
+}
+
+#cart {
+  background: hsl(26, 100%, 55%);
+  color: white;
+  border-radius: 50%;
+  margin: 5px;
+  width: 2rem;
+  height: 2rem;
+  display: inline-block;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  position: absolute;
+  top: -30px;
+  scale: 0.8;
+}
+
+.modal-dialog {
+  height: 80vh;
+  max-width: 100%;
+}
+
+.modal-bg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  padding: 5%;
+  border: none;
+  position: relative;
+  height: 100%;
+  width: 50%;
+  background: red;
+  margin: auto;
+}
+.modal-bg * {
+  margin: 0;
+  padding: 0;
+}
+.modal-bg .modal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  height: 40%;
+  position: relative;
+  margin: 15% auto;
+}
+.modal-bg .modal-body .arrow-next,
+.modal-bg .modal-body .arrow-prev {
+  position: absolute;
+}
+.modal-bg .modal-body .main-picture img {
+  width: 100%;
+}
+.modal-bg .modal-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  height: 5%;
+  border: none;
+  margin-top: 0;
+}
+.modal-bg .modal-header button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  top: 15px;
+  right: 25px;
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: none;
+  /*
+  span {
+      @include flex(row, center, center);
+      font-size: 2rem;
+      text-align: center;
+      vertical-align: middle;
+      transition: scale .25s linear, color linear .25s;
+  }
+  &:hover span {
+      scale: 1.2;
+      font-weight: bold;
+      color: $orange;
+      transition: scale .25s linear, color linear .25s;
+  }*/
+}
+.modal-bg .modal-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  height: 10%;
+  border: none;
 }
 
 /*
@@ -125,18 +302,6 @@ NAVBAR
 MAIN CONTENT = SIDEBAR IMAGES + ARTCILE DETAILS
 ----------------------------------------------------
 */
-.main-picture {
-  width: 100%;
-}
-.main-picture img {
-  border-radius: 20px;
-  width: 100%;
-}
-.main-picture .active {
-  width: 100%;
-  z-index: 2;
-}
-
 .picture-slider {
   display: flex;
   flex-direction: row;
@@ -149,16 +314,35 @@ MAIN CONTENT = SIDEBAR IMAGES + ARTCILE DETAILS
   height: fit-content;
   flex-wrap: nowrap;
 }
-.picture-slider img.active {
-  opacity: 30%;
-}
-.picture-slider img {
-  border-radius: 20px;
+.picture-slider a {
+  display: inline-block;
+  width: 100%;
+  border-radius: 5%;
   width: 20%;
   margin: 5px;
 }
-.picture-slider img:hover {
+.picture-slider a img {
+  width: 100%;
+}
+.picture-slider a:hover {
   opacity: 60%;
+}
+
+.main-picture {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+.main-picture img {
+  border-radius: 15%;
+  margin: 0 20%;
+  width: 100%;
 }
 
 .main-content {

@@ -65,20 +65,20 @@ NAVBAR
         margin: 0 20px
     }
     .nav{
-        @include flex(row, flex-start, center);
-        width: 100%;
+        @include flex(row, space-between, center);
+        flex: 1;
         flex-wrap: nowrap;
         ul {
             @include flex(row, flex-start, center);
             .nav-item {
                 color: hsl(220, 14%, 75%);
                 height: 100%;
-                width: 100px;
+                flex: .1;
                 border: 3px solid transparent;
-                transition: border ease 1s;
+                transition: border ease .5s;
                 &:hover {
                     border-bottom: $orange 3px solid;
-                    transition: border ease 1s;
+                    transition: border ease .5s;
                 }
                 .nav-link {
                     @include flex(row, center, center);
@@ -98,25 +98,163 @@ NAVBAR
         }
         .profile {
             @include flex(row, space-between, center);
-            width: 10%;
+            flex: 1;
+            position: relative;
+            svg {
+                scale: .75
+            }
             .icons {
                 margin-right: 15px;
             }
             a img {
-                width: 50px;
-                height: 50px;
+                width: 40px;
+                height: 40px;
                 border: transparent 2px solid;
+                transition: border ease .5s;
                 border-radius: 50%;
                 &:hover {
                     border: $orange 2px solid;
+                    transition: border ease .5s;
                 }
             }
         }
     }
 }
 
+.icon {
+    font-size: 2rem;
+    text-align: center;
+    vertical-align: middle;
+    transition: scale .25s linear, color linear .25s;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    border-radius: 50%;
+    &:hover {
+        color: $orange;
+        transition: scale .25s linear, color linear .25s;
+    }
+}
 
+.before,
+.after {
+    @include flex(row, center, center);
+    background: white;
+    width: 50px;
+    height: 50px;
+    z-index: 2;
+    svg {
+        font-size: 1rem;
+    }
+    &:hover * {
+        scale: 1.2;
+        font-weight: bold;
+    }
+}
+.before {
+    left: -25px;
+}
+.after {
+    right: -25px;
+}
+.close {
+    color: white;
+}
 
+.bucket {
+    position: relative; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+        padding-right: 5px;
+    }
+}
+
+#cart {
+    background: $orange;
+    color: white;
+    border-radius: 50%;
+    margin: 5px;
+    width: 2rem;
+    height: 2rem;
+    display: inline-block;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    position: absolute;
+    top: -30px;
+    scale: .8;
+}
+
+.modal-dialog {
+    height: 80vh;
+    max-width: 100%;
+}
+.modal-bg {
+    @include flex(column, center, center);
+    border-radius: 20px;
+    padding: 5%;
+    border: none;
+    position: relative;
+    height: 100%;
+    width: 50%;
+    background: red;
+    margin: auto;
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    .modal-body {
+        @include flex(column, center, center);
+        height: 40%;
+        position: relative;
+        margin: 15% auto;
+        .arrow-next,
+        .arrow-prev {
+            position: absolute;
+        }
+        .main-picture img {
+            width: 100%;
+        }
+    }
+    .modal-header {
+        @include flex(row, flex-end, center);
+        height: 5%;
+        border: none;
+        margin-top: 0;
+        button {
+            @include flex(row, center, center);
+            border-radius: 5px;
+            top: 15px;
+            right: 25px;
+            width: 30px;
+            height: 30px;
+            background: none;
+            border: none;
+            /*
+            span {
+                @include flex(row, center, center);
+                font-size: 2rem;
+                text-align: center;
+                vertical-align: middle;
+                transition: scale .25s linear, color linear .25s;
+            }
+            &:hover span {
+                scale: 1.2;
+                font-weight: bold;
+                color: $orange;
+                transition: scale .25s linear, color linear .25s;
+            }*/
+        }
+    }
+    .modal-footer {
+        @include flex(row, center, center);
+        height: 10%;
+        border: none;
+    }
+}
 
 
 /*
@@ -125,34 +263,39 @@ MAIN CONTENT = SIDEBAR IMAGES + ARTCILE DETAILS
 ----------------------------------------------------
 */
 
-.main-picture {
-    width: 100%;
-    img {
-        border-radius: 20px;
-        width: 100%;
-    }
-    .active {
-        width: 100%;
-        z-index: 2;
-    }
-}
 .picture-slider {
     @include flex(row, space-evenly, flex-start);
     width: 100%;
     height: fit-content;
     flex-wrap: nowrap;
-    img.active {
-        opacity: 30%;
-    }
-    img {
-        border-radius: 20px;
+    
+    a {
+        display: inline-block;
+        width: 100%;
+        border-radius: 5%;
         width: 20%;
         margin: 5px;
+        img {
+            width: 100%;
+        }
         &:hover {
             opacity: 60%;
         }
     }
 }
+
+.main-picture {
+    @include flex(row, space-between , center);
+    width: 100%;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    img {
+        border-radius: 15%;
+        margin: 0 20%;
+        width: 100%;
+    }
+}
+
 .main-content {
     @include flex(row, center, center);
     width: 80%;
