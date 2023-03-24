@@ -28,6 +28,8 @@ body,
 html {
   max-width: 1200px;
   margin: auto;
+  height: 100vh;
+  box-sizing: border-box;
 }
 
 /*
@@ -43,9 +45,12 @@ NAVBAR
   width: 100%;
   height: 100%;
   height: 75px;
-  width: auto;
+  width: 100%;
   border-bottom: 1px solid hsl(223, 64%, 98%);
-  margin-bottom: 50px;
+  padding: 0 50px;
+}
+.navbar a {
+  margin: 0;
 }
 .navbar > * {
   margin: 0 20px;
@@ -59,6 +64,7 @@ NAVBAR
   height: 100%;
   flex: 1;
   flex-wrap: nowrap;
+  height: 100%;
 }
 .navbar .nav ul {
   display: flex;
@@ -67,6 +73,7 @@ NAVBAR
   align-items: center;
   width: 100%;
   height: 100%;
+  margin: 0;
 }
 .navbar .nav ul .nav-item {
   color: hsl(220, 14%, 75%);
@@ -126,6 +133,30 @@ NAVBAR
   transition: border ease 0.5s;
 }
 
+.bucket {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#cart {
+  background: hsl(26, 100%, 55%);
+  color: white;
+  border-radius: 50%;
+  margin: 5px;
+  width: 2rem;
+  height: 2rem;
+  display: inline-block;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  position: absolute;
+  top: -30px;
+  scale: 0.8;
+}
+
 .icon {
   font-size: 2rem;
   text-align: center;
@@ -174,33 +205,6 @@ NAVBAR
 
 .close {
   color: white;
-}
-
-.bucket {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.bucket svg {
-  padding-right: 5px;
-}
-
-#cart {
-  background: hsl(26, 100%, 55%);
-  color: white;
-  border-radius: 50%;
-  margin: 5px;
-  width: 2rem;
-  height: 2rem;
-  display: inline-block;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  position: absolute;
-  top: -30px;
-  scale: 0.8;
 }
 
 .modal-dialog {
@@ -310,19 +314,18 @@ MAIN CONTENT = SIDEBAR IMAGES + ARTCILE DETAILS
   width: 100%;
   height: 100%;
   width: 100%;
-  height: -moz-fit-content;
-  height: fit-content;
+  gap: 5px;
   flex-wrap: nowrap;
+  padding-left: 0;
 }
 .picture-slider a {
   display: inline-block;
   width: 100%;
-  border-radius: 5%;
-  width: 20%;
   margin: 5px;
 }
 .picture-slider a img {
   width: 100%;
+  border-radius: 10px;
 }
 .picture-slider a:hover {
   opacity: 60%;
@@ -341,7 +344,7 @@ MAIN CONTENT = SIDEBAR IMAGES + ARTCILE DETAILS
 }
 .main-picture img {
   border-radius: 15%;
-  margin: 0 20%;
+  margin: 0 auto;
   width: 100%;
 }
 
@@ -349,11 +352,12 @@ MAIN CONTENT = SIDEBAR IMAGES + ARTCILE DETAILS
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   height: 100%;
   width: 80%;
-  margin: auto;
+  gap: 50px;
+  margin: 20px auto;
 }
 .main-content .article-pictures {
   display: flex;
@@ -362,11 +366,18 @@ MAIN CONTENT = SIDEBAR IMAGES + ARTCILE DETAILS
   align-items: flex-start;
   width: 100%;
   height: 100%;
-  width: 50%;
-  margin-right: 100px;
+  width: 45%;
+  height: 80%;
 }
 .main-content .article-content {
-  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  width: 45%;
+  height: 80%;
 }
 .main-content .article-content .compagny-name {
   color: hsl(26, 100%, 55%);
@@ -405,7 +416,7 @@ MAIN CONTENT = SIDEBAR IMAGES + ARTCILE DETAILS
   height: 100%;
   height: 50px;
 }
-.main-content .article-content .buy-form .article-number, .main-content .article-content .buy-form .article-number .number,
+.main-content .article-content .buy-form .article-number, .main-content .article-content .buy-form .article-number #arcticleNumber,
 .main-content .article-content .buy-form .article-number button {
   display: flex;
   flex-direction: row;
@@ -424,12 +435,16 @@ MAIN CONTENT = SIDEBAR IMAGES + ARTCILE DETAILS
   font-size: 0.9rem;
   font-weight: 700;
 }
-.main-content .article-content .buy-form .article-number .number,
+.main-content .article-content .buy-form .article-number #arcticleNumber,
 .main-content .article-content .buy-form .article-number button,
-.main-content .article-content .buy-form .article-number .number button,
+.main-content .article-content .buy-form .article-number #arcticleNumber button,
 .main-content .article-content .buy-form .article-number button button {
   width: 60px;
   text-align: center;
+  margin: 0;
+}
+.main-content .article-content .buy-form .article-number #articleNumber {
+  padding: 0;
   margin: 0;
 }
 .main-content .article-content .buy-form .add-cart-btn {

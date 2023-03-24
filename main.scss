@@ -47,6 +47,8 @@ body,
 html {
     max-width: 1200px;
     margin: auto;
+    height: 100vh;
+    box-sizing: border-box;
 }
 
 
@@ -58,9 +60,12 @@ NAVBAR
 .navbar {
     @include flex(row, space-between, center);
     height: 75px;
-    width: auto;
+    width: 100%;
     border-bottom: 1px solid $light-blue;
-    margin-bottom: 50px;
+    padding: 0 50px;
+    a {
+        margin: 0;
+    }
     & > * {
         margin: 0 20px
     }
@@ -68,8 +73,10 @@ NAVBAR
         @include flex(row, space-between, center);
         flex: 1;
         flex-wrap: nowrap;
+        height: 100%;
         ul {
             @include flex(row, flex-start, center);
+            margin: 0;
             .nav-item {
                 color: hsl(220, 14%, 75%);
                 height: 100%;
@@ -121,6 +128,34 @@ NAVBAR
     }
 }
 
+.bucket { 
+    position: relative; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#cart {
+    background: $orange;
+    color: white;
+    border-radius: 50%;
+    margin: 5px;
+    width: 2rem;
+    height: 2rem;
+    display: inline-block;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    position: absolute;
+    top: -30px;
+    scale: .8;
+}
+
+
+
+
+
 .icon {
     font-size: 2rem;
     text-align: center;
@@ -161,32 +196,7 @@ NAVBAR
     color: white;
 }
 
-.bucket {
-    position: relative; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    svg {
-        padding-right: 5px;
-    }
-}
 
-#cart {
-    background: $orange;
-    color: white;
-    border-radius: 50%;
-    margin: 5px;
-    width: 2rem;
-    height: 2rem;
-    display: inline-block;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    position: absolute;
-    top: -30px;
-    scale: .8;
-}
 
 .modal-dialog {
     height: 80vh;
@@ -266,17 +276,17 @@ MAIN CONTENT = SIDEBAR IMAGES + ARTCILE DETAILS
 .picture-slider {
     @include flex(row, space-evenly, flex-start);
     width: 100%;
-    height: fit-content;
+    gap: 5px;
     flex-wrap: nowrap;
+    padding-left: 0;
     
     a {
         display: inline-block;
         width: 100%;
-        border-radius: 5%;
-        width: 20%;
         margin: 5px;
         img {
             width: 100%;
+            border-radius: 10px;
         }
         &:hover {
             opacity: 60%;
@@ -291,22 +301,25 @@ MAIN CONTENT = SIDEBAR IMAGES + ARTCILE DETAILS
     scroll-behavior: smooth;
     img {
         border-radius: 15%;
-        margin: 0 20%;
+        margin: 0 auto;
         width: 100%;
     }
 }
 
 .main-content {
-    @include flex(row, center, center);
+    @include flex(row, center, flex-start);
     width: 80%;
-    margin: auto;
+    gap: 50px;
+    margin: 20px auto;
     .article-pictures {
         @include flex(column, flex-start, flex-start);
-        width: 50%;
-        margin-right: 100px;
+        width: 45%;
+        height: 80%;
     }
     .article-content{
-        width: 50%;
+        @include flex(column, center, flex-start);
+        width: 45%;
+        height: 80%;
         .compagny-name {
             color: $orange;
         }
@@ -351,11 +364,15 @@ MAIN CONTENT = SIDEBAR IMAGES + ARTCILE DETAILS
                 border-radius: 10px;
                 font-size: .9rem;
                 font-weight: 700;
-                .number,
+                #arcticleNumber,
                 button {
                     @extend .article-number;
                     width: 60px;
                     text-align: center;
+                    margin: 0;
+                }
+                #articleNumber {
+                    padding: 0;
                     margin: 0;
                 }
             }
